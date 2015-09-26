@@ -40,7 +40,8 @@ The `viewresult.py` outputs your result in details.
 
 Give Script input data following the ```sample input.txt``` given above and you can add rooms to rooms.py.
 
-Run command `python viewresult.py` and your result will be printed. 
+Run command `python viewresult.py` and your result will be printed to screen. 
+
 To COPY result to text file run `python viewresult.py > result.txt `. 
 
 ####Have fun!!!!!
