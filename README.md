@@ -4,7 +4,7 @@
 
 #####Just as the name implies this short Algorithm was created to randomly allocate company members to randomly generated rooms.
 
-Within the Scope of these algorithm the code has a pre-defined number of offices for allocation and a predefined number of hostels to allocate to male and female fellows who opted for it. This definition can be found in the `Rooms.py` file. You can always modified that after you fork this repo.
+Within the Scope of these algorithm the code has a pre-defined number of offices for allocation and a predefined number of hostels to allocate to male and female fellows who opted for it. This definition can be found in the `Rooms.py` file. You can always modify that after you `fork` this repo.
 
 ```
 Algorithm  Basic Conditions are:
@@ -24,7 +24,7 @@ ISSAC NNADI  M STAFF
 CRIBS JANE   F FELLOW Y
 ```
 
-The above input format specifies the Name of the Company's member, the member's gender, the member's position and the member's choice. One more thing here, Staffs are not allocated to either male or female offices and so they have no choice to make from the sample data input.
+The above input format specifies the `Name of the Company's member`, the `member's gender`, the `member's position` and the `member's choice`. One more thing here, Staffs are not allocated to either male or female offices and so they have no choice to make from the sample data input.
 
 ###Work Flow
 
