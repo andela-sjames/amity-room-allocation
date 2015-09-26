@@ -4,7 +4,7 @@
 
 #####Just as the name implies this short Algorithm was created to randomly allocate company members to randomly generated rooms.
 
-Within the Scope of these algorithm the code has a pre-defined number of offices for allocation and a predefined number of hostels to allocate to male and female fellows who opted for it. This definition can be found in the `Rooms.py` file. You can always modify that after you `fork` this repo.
+Within the Scope of this algorithm the code has a pre-defined number of offices for allocation and a predefined number of hostels to allocate to male and female fellows who opted for it. This definition can be found in the `Rooms.py` file. You can always modify that after you `fork` this repo.
 
 ```
 Algorithm  Basic Conditions are:
