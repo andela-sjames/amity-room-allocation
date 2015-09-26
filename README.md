@@ -15,30 +15,36 @@ Algorithm  Basic Conditions are:
 
 ```
 
-The input into this Script can be found in the input.txt file where the input format can be viewed or seen below
+The input into this Script can be found in the input.txt file where the input format can be viewed or seen below:
 
+```
 BOLA AHMED   M FELLOW Y
 JOHN OBI     M FELLOW N
 ISSAC NNADI  M STAFF   
 CRIBS JANE   F FELLOW Y
+```
 
 the above input format specifies the Name of the Company's member, the member's gender, the member's position and the member's choice. One more thing here, Staffs are not allocated to either male or female offices and so they have no choice to make from the sample data input.
 
-Work Flow
+###Work Flow
 
-The readfile.py reads data and stores them  in different containers according to the conditions given, then randomly shuffled them for random allocation.
+```
+The `readfile.py` reads data and stores them  in different containers according to the conditions given, then randomly shuffled them for random allocation.
 
-The rooms.py stores the class definition, pre-defined offices, male and females rooms to be allocated at run time.
+The `rooms.py` stores the class definition, pre-defined offices, male and females rooms to be allocated at run time.
 
-The Allocate.py makes use of the data returned from the readfile.py script and the class definitions and rooms definition found in the rooms.py script. The Allocate.py script allocates based on conditions given ensuring that each room meets desired condition before allocating to the next room. ofcourse no one knows who is going to be placed in any room because everything is random and there is no certainty. 
+The `Allocate.py` makes use of the data returned from the `readfile.py` script and the class definitions and rooms definition found in the `rooms.py` script. The `Allocate.py` script allocates based on conditions given ensuring that each room meets desired condition before allocating to the next room. ofcourse no one knows who is going to be placed in any room because everything is random and there is no certainty. 
 
-The viewresult.py outputs your result in details.
+The `viewresult.py` outputs your result in details.
+```
 
-To use Script 
+###To use Script 
 
+```
 Give Script input data following the ```sample input.txt``` given above and you can add rooms to rooms.py.
 
 Run command `python viewresult.py` and your result will be displayed for you. 
+```
 
 have fun!!!!!
 
