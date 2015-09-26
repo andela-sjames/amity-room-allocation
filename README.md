@@ -30,7 +30,7 @@ The above input format specifies the `Name of the Company's member`, the `member
 
 The `readfile.py` reads data and stores them  in different containers according to the conditions given, then randomly shuffles them for random allocation.
 
-The `rooms.py` stores the class definition, pre-defined offices, male and females rooms to be allocated at run time.
+The `rooms.py` stores the class definition, pre-defined offices, male and females rooms that are randomly shuffled, to be allocated at run time.
 
 The `Allocate.py` makes use of the data returned from the `readfile.py` script and the class definitions and rooms definition found in the `rooms.py` script. The `Allocate.py` script allocates based on conditions given ensuring that each room meets desired condition before allocating to the next room. Ofcourse, no one knows who is going to be placed in any room and which room will be called first because everything is random and there is no certainty. 
 
