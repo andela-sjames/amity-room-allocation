@@ -38,7 +38,7 @@ The `viewresult.py` outputs your result in details.
 
 ###To use Script 
 
-Install [Python](https://www.python.org/) if you don't have it installed 
+Install [Python](https://www.python.org/) 2.7+ if you don't have it installed 
 
 Give Script input data following the ```sample input.txt``` given above and you can add rooms to rooms.py.
 
