@@ -24,7 +24,7 @@ ISSAC NNADI  M STAFF
 CRIBS JANE   F FELLOW Y
 ```
 
-The above input format specifies the `Name of the Company's member`, the `member's gender`, the `member's position` and the `member's choice`. One more thing here, Staffs are not allocated to either male or female offices and so they have no choice to make from the sample data input.(note: Ensure that you leave a several spaces after 'STAFF' for input)
+The above input format specifies the `Name of the Company's member`, the `member's gender`, the `member's position` and the `member's choice`. One more thing here, Staffs are not allocated to either male or female offices and so they have no choice to make from the sample data input.(note: Ensure that you leave several spaces after 'STAFF' for input)
 
 ###Work Flow
 
