@@ -28,13 +28,21 @@ The above input format specifies the `Name of the Company's member`, the `member
 
 ###Work Flow
 
-The `readfile.py` reads data and stores them  in different containers according to the conditions given, then randomly shuffles them for random allocation.
+The `readfile.py` reads data, sorts them and stores them in different lists, according to the conditions given, then randomly shuffles them for random allocation.
 
 The `rooms.py` stores the class definition, pre-defined offices, male and females rooms that are randomly shuffled, to be allocated at run time.
 
 The `Allocate.py` makes use of the data returned from the `readfile.py` script and the class definitions and rooms definition found in the `rooms.py` script. The `Allocate.py` script allocates based on conditions given ensuring that each room meets desired condition before allocating to the next room. Ofcourse, no one knows who is going to be placed in any room and which room will be called first because everything is random and there is no certainty. 
 
 The `viewresult.py` outputs your result in details.
+Methods included in the viewresult.py are:
+```
+ViewResults.Unallocatedlist()
+ViewResults.allocatedlist()
+ViewResults.maleroom_members('topaz')
+ViewResults.officeroom_members('Vulcan')
+ViewResults.femaleroom_members('pearl')
+```
 
 ###To use Script 
 
@@ -45,6 +53,11 @@ Give Script input data following the ```sample input.txt``` given above and you 
 Run command from command line(CLI) `python viewresult.py` and your result will be printed to screen. 
 
 To COPY result to text file run `python viewresult.py > result.txt `. 
+
+To dynamically Input text file and not make use of default name of `input.txt` as your input file
+Add the code `#officedata = GetData.read_file(filename = 'input2.txt')` to viewresult.py to use instead.
+`Where (filename = 'yourfile.txt')`.
+
 
 ####Have fun!!!!!
 
