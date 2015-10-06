@@ -37,11 +37,11 @@ The `Allocate.py` makes use of the data returned from the `readfile.py` script a
 The `viewresult.py` outputs your result in details.
 Methods included in the viewresult.py are:
 ```
-ViewResults.Unallocatedlist()
+ViewResults.Unallocatedlist()  
 ViewResults.allocatedlist()
-ViewResults.maleroom_members('topaz')
-ViewResults.officeroom_members('Vulcan')
-ViewResults.femaleroom_members('pearl')
+ViewResults.maleroom_members('topaz')    use method to find members of specified room.
+ViewResults.officeroom_members('Vulcan') use method to find members of specified room.
+ViewResults.femaleroom_members('pearl')  use method to find members of specified room.
 ```
 
 ###To use Script 
