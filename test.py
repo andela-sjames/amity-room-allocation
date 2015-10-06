@@ -14,33 +14,10 @@ class TestGetData(unittest.TestCase):
     def setUp(self):
         self.get = GetData()
 
-    def test_read_file(self):
-        '''Test read_file method is called.'''
-        self.assertIsNotNone(self.get.read_file(), msg="a valid set of data is  called")
-
-    def test_officedata_is_returned(self):
-        '''Test that length of data is same from read_file method.'''
-        self.assertEqual(len(self.get.officedata()), len(self.get.read_file()), msg="files should not be altered")
-
-    def test_data_input(self):
-        '''Test that officedata exist.'''
-        self.assertIsNotNone(self.get.officedata(), msg="a valid set of item should be returned")
-
-    def test_maledata_function(self):
-        '''Test that maledata returned is not none.'''
-        self.assertIsNotNone(self.get.maledata(), msg="a valid set of item should be returned")
-
-    def test_femaledata_function(self):
-        '''Test that femaledata returned is not None.'''
-        self.assertIsNotNone(self.get.femaledata(), msg="a valid set of item should be returned")
-
-    def test_natls_function(self):
-        '''Test that NOT allocated data is returned.'''
-        self.assertIsNotNone(self.get.notallocated_tolivingspacedata(), msg="a valid set of item should be returned")
-
-    def test_snatr_function_is_called(self):
-        '''Test that staff not allocated data is returned.'''
-        self.assertIsNotNone(self.get.staff_not_allocated_to_rooms(), msg="a valid set of item should be returned")
+   
+    def test_data_is_generated(self):
+        '''Test that generatedata function returns list'''
+        self.assertIsNotNone(self.get.generatedata(), msg='GetData.generatedata should return a list')
 
 class TestAllocate(unittest.TestCase):
 

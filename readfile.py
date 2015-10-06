@@ -4,23 +4,22 @@
 import re
 import random
 
+filename = 'input.txt'
 
 class GetData(object):
 
-    """Class definition used to get data from input.txt. 
-    
+    """Class definition used to get data from inputfile. 
+    Uses input.txt as default if none specified.
     Data read from file is randomly shuffled here for random allocation.
     """
-    
-    def __init__(self):
-        self.input = 'input.txt'
-    
-    def read_file(self):
+
+    @staticmethod
+    def read_file(filename = 'input.txt'):
 
         '''Method returns the text file data and saves in list. '''        
         
         data = []
-        with open(self.input, 'r') as inputfile:
+        with open(filename, 'r') as inputfile:
             entry = re.compile(r'(\w+\s[^\s]+)\s{0,}(\w+)\s{0,}(\w+)\s(\w)?')
             for inputdata in inputfile:
                 inputdata = inputdata.strip('\n')
@@ -33,83 +32,37 @@ class GetData(object):
 
             return data
 
-    def officedata(self):
 
-        ''' Method returns a total number contained in textfile. '''
+    @staticmethod
+    def generatedata():
 
-        return self.read_file()
-
-    def maledata(self):
-
-        ''' Method returns data for male fellows that applied. '''
+        '''Method returns sorted data and saves in different list. '''
 
         maledatarecord = []
-        with open(self.input, 'r') as inputfile:
-            entry = re.compile(r'(\w+\s[^\s]+)\s{0,}(\w+)\s{0,}(\w+)\s(\w)?')
-            for maledata in inputfile:
-                maledata = maledata.strip('\n')
-                part = entry.search(maledata)
-                maleset = part.groups()
-                maleset = list(maleset)
-                if maleset[1] == 'M' and maleset[2] == "FELLOW" and maleset[3] == 'Y':
-                    maledatarecord.append(maleset)
-                    random.shuffle(maledatarecord)
-                
-            return maledatarecord
-
-    def femaledata(self):
-
-        '''Method returns data for female fellows that applied. '''
-
         femaledatarecord = []
-        with open(self.input, 'r') as inputfile:
-            entry = re.compile(r'(\w+\s[^\s]+)\s{0,}(\w+)\s{0,}(\w+)\s(\w)?')
-            for femaledata in inputfile:
-                femaledata = femaledata.strip('\n')
-                part = entry.search(femaledata)
-                femaleset = part.groups()
-                femaleset = list(femaleset)
-                if femaleset[1] == 'F' and femaleset[2] == "FELLOW" and femaleset[3] == 'Y':
-                    femaledatarecord.append(femaleset)
+        notallocatedtolivingspace = []
+        staffnotallocatedtorooms = []
+        officedatarecord = GetData.read_file(filename)[:]
+        for value in officedatarecord:
+            if value[1] == 'M' and value[2] == "FELLOW" and value[3] == 'Y':
+                maledatarecord.append(value)
+                random.shuffle(maledatarecord)
+
+            if value[1] == 'F' and value[2] == "FELLOW" and value[3] == 'Y':
+                    femaledatarecord.append(value)
                     random.shuffle(femaledatarecord)
 
-            return femaledatarecord
+            if value[2] == 'FELLOW' and value[3] == 'N':
+                notallocatedtolivingspace.append(value)
+                random.shuffle(notallocatedtolivingspace)
 
-    def notallocated_tolivingspacedata(self):
+            if value[3] == None:
+                staffnotallocatedtorooms.append(value)
+                random.shuffle(staffnotallocatedtorooms)
 
-        ''' Method returns data for fellows that didn't apply. '''
+        return maledatarecord, femaledatarecord, notallocatedtolivingspace, staffnotallocatedtorooms
 
-        natls = []
-        with open(self.input, 'r') as inputfile:
-            entry = re.compile(r'(\w+\s[^\s]+)\s{0,}(\w+)\s{0,}(\w+)\s(\w)?')
-            for natlsdata in inputfile:
-                natlsdata = natlsdata.strip('\n')
-                part = entry.search(natlsdata)
-                natlsset = part.groups()
-                natlsset = list(natlsset)
-                if natlsset[2] == 'FELLOW' and natlsset[3] == 'N':
-                    natls.append(natlsset)
-                    random.shuffle(natls)
+        
 
 
-            return natls
-
-    def staff_not_allocated_to_rooms(self):
-
-        ''' Method returns data of staff containaed in text file. '''
-
-        snatr = []
-        with open(self.input, 'r') as inputfile:
-            entry = re.compile(r'(\w+\s[^\s]+)\s{0,}(\w+)\s{0,}(\w+)\s(\w)?')
-            for snatrdata in inputfile:
-                snatrdata = snatrdata.strip('\n')
-                part = entry.search(snatrdata)
-                snatrset = part.groups()
-                snatrset = list(snatrset)
-                if snatrset[3] == None:
-                    snatr.append(snatrset)
-                    random.shuffle(snatr)
-
-
-            return snatr
-            
+        

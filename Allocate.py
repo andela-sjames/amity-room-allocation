@@ -1,16 +1,15 @@
 '''This script uses data from the rooms.py file and readfile.py to allocate.'''
 
 
-from readfile import GetData
+from readfile import GetData, filename
 from rooms import *
 
 occupied_offices = []
 occupied_malerooms = []
 occupied_femalerooms = []
 
-officedata = GetData().officedata()
-maledata = GetData().maledata()
-femaledata = GetData().femaledata()
+officedata = GetData.read_file(filename)
+maledata, femaledata, notallocatedtolivingspace, staffnotallocatedtorooms = GetData.generatedata()
 
 unplacedmaledata = maledata[:]
 unplacedofficedata = officedata[:]
