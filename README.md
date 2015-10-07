@@ -6,7 +6,11 @@
 
 Within the Scope of this algorithm the code has a pre-defined number of offices for allocation and a predefined number of hostels to allocate to male and female fellows who opted for it. This definition can be found in the `Rooms.py` file. You can always modify that after you `fork` this repo.
 
+```Offices prepopulated are:'Carat', 'Anvil', 'Crucible', 'Kiln', 'Forge', 'Foundry', 'Furnace', 'Boiler', 'Mint', 'Vulcan'
 ```
+```Malerooms prepopulated are:'topaz', 'silver', 'gold', 'onyx', 'opal'```
+```Femalerooms prepopulated are: 'ruby', 'platinum', 'jade', 'pearl', 'diamond'```
+
 Algorithm  Basic Conditions are:
 
 1. No staff should be allocated to Male or Female Rooms
