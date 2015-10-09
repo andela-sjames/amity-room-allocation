@@ -1,58 +1,39 @@
 '''Script used to hold rooms and office properties'''
-import random
 
-amityoffices = ['Carat', 'Anvil', 'Crucible', 'Kiln', 'Forge', 'Foundry', 'Furnace', 'Boiler', 'Mint', 'Vulcan',]
-random.shuffle(amityoffices)
-
-amitymalerooms = ['topaz', 'silver', 'gold', 'onyx', 'opal',]
-random.shuffle(amitymalerooms)
-
-amityfemalerooms = ['ruby', 'platinum', 'jade', 'pearl', 'diamond',]
-random.shuffle(amityfemalerooms)
-
-
-
-class OfficeRoom(object):
+class Office(object):
 
     ''' Class takes a maximum of 6 persons per room. '''
 
-    def __init__(self, name, maxofficepersons=6):
+    def __init__(self, name, maxpersons=6):
         self.name = name
-        self.maxofficepersons = maxofficepersons
-        self.officemembers = []
+        self.maxpersons = maxpersons
+        self.roommembers = []
 
-    def addofficemember(self, member):
+    def addmember(self, member):
         '''Method appends member data to class.'''
-        self.officemembers.append(member)
+        self.roommembers.append(member)
 
 
 
-class LivingSpacesMale(object):
+class LivingSpace(Office):
 
     ''' Class takes a maximum of 4 persons per room. '''
-
-    def __init__(self, name, maxmalepersons=4):
+    type = None
+    def __init__(self, type, name, maxpersons=4):
+        super(LivingSpace, self).__init__(type, name)
+        self.type = type
         self.name = name
-        self.maxmalepersons = maxmalepersons
-        self.maleroommembers = []
+        self.maxpersons = maxpersons
+        self.malemember = []
+        self.femalemember = []
 
-    def addmalemembers(self, member):
-        '''Method appends member data to class.'''
-        self.maleroommembers.append(member)
+    def addmalemember(self, member):
+        if self.type == 'm':
+            self.malemember.append(member)
 
-
-class LivingSpacesFemale(object):
-
-    ''' Class takes a maximum of 4 persons per room. '''
-
-    def __init__(self, name, maxfemalepersons=4):
-        self.name = name
-        self.maxfemalepersons = maxfemalepersons
-        self.femaleroommembers = []
-
-    def addfemalemember(self, member):
-        '''Method appends member data to class.'''
-        self.femaleroommembers.append(member)
+    def addfemalemember(self,member):
+        if self.type == 'f':
+            self.femalemember.append(member)
 
 
 

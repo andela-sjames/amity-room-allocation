@@ -1,12 +1,10 @@
 '''Script use to view result of allocation.'''
+from building import Building
 
-from Allocate import Allocate, GetData, occupied_offices, officedata, unplacedofficedata, occupied_malerooms, maledata, unplacedfemaledata, unplacedmaledata, occupied_femalerooms, femaledata, notallocatedtolivingspace, staffnotallocatedtorooms
-from readfile import filename
+amity = Building('Amity')
+amity.populate()
+amity.allocate()
 
-start = Allocate()
-start.allocate_office()
-start.allocate_malerooms()
-start.allocate_femalerooms()
 
 
 
