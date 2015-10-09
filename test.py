@@ -1,111 +1,74 @@
 '''Unittest Script to check code fuctionality.'''
 
-from readfile import GetData
-from viewresult  import ViewResults
-from rooms import OfficeRoom, LivingSpacesMale, LivingSpacesFemale, amityfemalerooms, amitymalerooms, amityoffices
-from Allocate import Allocate, unplacedofficedata, unplacedmaledata, unplacedfemaledata, occupied_femalerooms, occupied_malerooms, occupied_offices
+from fileparser import Parser 
+from building import Building
+from rooms import Office, LivingSpace
+
 import unittest
 
-
-class TestGetData(unittest.TestCase):
+class TestParserClass(unittest.TestCase):
 
     '''Class used to test if .txt file is read.'''
 
     def setUp(self):
-        self.get = GetData()
+        self.parse = Parser()
 
-   
-    def test_data_is_generated(self):
-        '''Test that generatedata function returns list'''
-        self.assertIsNotNone(self.get.generatedata(), msg='GetData.generatedata should return a list')
+    def test_data_is_readfrom_inputfile(self):
 
-class TestAllocate(unittest.TestCase):
+        '''Test that read_file method returns a not null value'''
+        
+        self.assertIsNotNone(self.parse.read_file('input.txt'), msg='Parser.rea_file should not return an empty value ')
 
-    '''Test that data is properly allocated.'''
+class TestBuildingClass(unittest.TestCase):
 
-    def setUp(self):
-        self.allocate = Allocate()
-        self.officeroom = OfficeRoom('office')
-        self.livingspacemale = LivingSpacesMale('maleroom')
-        self.livingspacefemale = LivingSpacesFemale('femaleroom')
-
-    def test_allocate_rooms(self):
-        '''Test that room instances are created.'''
-        self.assertIsInstance(
-            self.officeroom, OfficeRoom,
-            msg="officeroom should be an instance of 'OfficeRoom' class")
-
-        self.assertIsInstance(
-            self.livingspacemale, LivingSpacesMale,
-            msg="livingspacemale should be an instance of 'LivingSpacesMale' class")
-
-        self.assertIsInstance(
-            self.livingspacefemale, LivingSpacesFemale,
-            msg="livingspacefemale should be an instance of 'LivingSpacesFemale' class")
-
-    def test_office_appended(self):
-        '''Test that office are populated.'''
-        for office in amityoffices:
-            officeroom = OfficeRoom(office)
-            while len(officeroom.officemembers) < officeroom.maxofficepersons:
-                self.assertLess(len(officeroom.officemembers), officeroom.maxofficepersons, msg="number must not exceed condition set")
-                if len(unplacedofficedata):
-                    position = unplacedofficedata.pop()
-                    officeroom.addofficemember(position)
-                else:
-                    break
-            occupied_offices.append(officeroom)
-            self.assertIn(officeroom, occupied_offices, msg="officeroom names should be appended to list")
-            if len(unplacedofficedata) == 0:
-                break
-
-    def test_maleroom_appended(self):
-        '''Test that male rooms are populated.'''
-        for maleroom in amitymalerooms:
-            livingspacemale = LivingSpacesMale(maleroom)
-            while len(livingspacemale.maleroommembers) < livingspacemale.maxmalepersons:
-                if len(unplacedmaledata):
-                    position = unplacedmaledata.pop()
-                    livingspacemale.addmalemembers(position)
-                else:
-                    break
-            occupied_malerooms.append(livingspacemale)
-            self.assertIn(livingspacemale, occupied_malerooms, msg=" maleroom names should be appended to list")
-            if len(unplacedmaledata) == 0:
-                break
-
-
-    def test_femaleroom_appended(self):
-        '''Test that female rooms are populated.'''
-        for femaleroom in amityfemalerooms:
-            livingspacefemale = LivingSpacesFemale(femaleroom)
-            while len(livingspacefemale.femaleroommembers) < livingspacefemale.maxfemalepersons:
-                if len(unplacedfemaledata):
-                    position = unplacedfemaledata.pop()
-                    livingspacefemale.addfemalemember(position)
-                else:
-                    break
-            occupied_femalerooms.append(livingspacefemale)
-            self.assertIn(livingspacefemale, occupied_femalerooms, msg=" femaleroom names should be appended to list")
-            if len(unplacedfemaledata) == 0:
-                break
-
-
-class Printdata(unittest.TestCase):
-
-    '''Class to check data is printed.'''
+    '''Class used to test builing is populated and allocates rooms.'''
 
     def setUp(self):
-        self.getresult = ViewResults()
+        self.build = Building()
+
+    def test_building_is_populated_with_data(self):
+
+        self.assertIsNotNone(self.build.populateroom(), msg ='room_directory should be poplated with data from list.')
+
+        self.assertIsNotNone(self.build.space_data('everyone'), msg ='data from returned parser class should be callable')
+
+        self.assertIsNotNone(self.build.get_room_list('offices'), msg ='list of offices available should be returned')
+
+        self.assertIsNotNone(self.build.get_room_list('livingspaceroom'), msg = 'list of livingspace room should be returned')
+
+    def test_data_allocation_function_returns_None(self):
+
+        self.assertIsNone(self.build.allocate_to_livingspace(), msg='method should not return any value')
+
+        self.assertIsNone(self.build.allocate_to_office(), msg='method should return any value')
+
+    def test_data_is_printed(self):
+
+        self.assertIsNone(self.build.allocated_members_list(), msg = 'method should print data and not return a value.')
+
+        self.assertIsNone(self.build.Unallocated_members_list(), msg = 'method should print data and not return a value.')
+
+        self.assertIsNone(self.build.maleroom_members('opal'),msg ='should print data and not return a value')
+
+        self.assertIsNone(self.build.femaleroom_members('ruby'),msg ='should print data and not return a value')
+
+        self.assertIsNone(self.build.officeroom_members('Mint'),msg ='should print data and not return a value')
 
 
-    def data_is_printed(self):
-        '''Test that results are printed.'''
-        self.assertIsNotNone(self.getresult.print_result(), msg="all results should be printed")
+class TestRoomsClass(unittest.TestCase):
 
+    def setUp(self):
+        self.office = Office('Vulcan')
+        self.livingspace = LivingSpace('m', 'topaz')
 
+    def test_class_instance_created(self):
+        self.assertIsInstance(
+            self.office, Office,
+            msg="office should be an instance of 'Office' class")
 
-
+        self.assertIsInstance(
+            self.livingspace, LivingSpace,
+            msg="livingspace should be an instance of 'LivingSpace' class")
 
 
 if __name__ == '__main__':
