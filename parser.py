@@ -42,20 +42,6 @@ class Parser(object):
 
         return people
 
-
-'''
-p = Parser.read_file()
-for key in p:
-    if key == 'everyone':
-        count = 0
-        for individual in p[key]:
-            print individual.name, individual.gender, individual.position
-            count += 1
-
-        print count
-
-'''
-
         
 
         

@@ -4,14 +4,13 @@ from parser import Parser
 from rooms import Office, LivingSpace
 import random
 
-people = Parser.read_file()
+people = Parser.read_file(filename = 'input.txt')
 occupied_offices =[]
 occupied_hostels = []
 room_directory = {
             'offices': [],
             'livingspaceroom': [],
             }
-
 
 class Building(object):
 
@@ -116,61 +115,86 @@ class Building(object):
 
         return fellowdataset
 
+    @staticmethod
+    def allocated_members_list():
+        for room in occupied_offices:
+            print "For the {} Office those allocated are: " .format(room.name)
+            if room.roommembers:
+                for i, value in enumerate(room.roommembers):
+                    print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+            else:
+                    print ('No Allocation to this room.')
+            print("" * 1)
+
+
+        for room in occupied_hostels:
+            if room.type == 'm':
+                print 'For {} Male room those allocated are:'.format(room.name)
+                if room.malemember:
+                    for i, value in enumerate(room.malemember):
+                        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                else:
+                    print ('No Allocation to this room.')
+                print("" * 1)
+
+        for room in occupied_hostels:
+            if room.type == 'f':
+                print 'For {} Female room those allocated are:'.format(room.name)
+                if room.femalemember:
+                    for i, value in enumerate(room.femalemember):
+                        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                else:
+                    print ('No Allocation to this room.')
+                print("" * 1)
+
+    @staticmethod
+    def Unallocated_member_list():
+
+        pass
+
+    @staticmethod
+    def maleroom_members(rooms):
+        for room in occupied_hostels:
+            if room.type == 'm':
+                if room.name == rooms :
+                    print "For the {} maleroom those allocated are: " .format(room.name)
+                    for i, value in enumerate(room.malemember):
+                        if room.malemember:
+                            print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                        else:
+                            print "No one present in this room."
+                    print("" * 1)
 
 
 
+    @staticmethod
+    def femaleroom_members(rooms):
+        for room in occupied_hostels:
+            if room.type == 'f':
+                if room.name == rooms :
+                    print "For the {} femaleroom those allocated are: " .format(room.name)
+                    for i, value in enumerate(room.femalemember):
+                        if room.femalemember:
+                            print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                        else:
+                            print "No one present in this room."
+                    print("" * 1)
 
 
+    @staticmethod
+    def officeroom_members(rooms):
+        for offices in occupied_offices:
+            if offices.name == rooms:
+                print "For the {} office those allocated are: " .format(offices.name)
+                for i, value in enumerate(offices.roommembers):
+                    if offices.roommembers:
+                        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                    else:
+                        print "No one present in this room."
+                print("" * 1)
+
+hostel_data_set = Building.allocate_to_livingspace()
+office_data_set = Building.allocate_to_office()
 
 
-
-
-
-
-
-Building.populateroom()
-officeset = Building.allocate_to_office()
-fellowset = Building.allocate_to_livingspace()
-#fellowdataset = Building.space_data('fellows')
-#print fellowdataset
-
-#fellowdataset = Building.space_data('fellows')
-#print fellowdataset
-#allocate to maleroom
-
-for room in occupied_hostels:
-    print room.name, room.type
-    for i, value in enumerate(room.malemember):
-        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
-
-for room in occupied_hostels:
-    print room.name, room.type
-    for i, value in enumerate(room.femalemember):
-        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
-
-
-#unallocated to hostels.
-print ('unallocated fellows')
-if len(fellowset):
-    print "You can view the {} unallocated members below." .format(len(unplacedofficedata))
-    for i, value in enumerate(fellowset):
-                print i+1, value[0], value[2], value[1]
-else:
-    if len(fellowset) == 0:
-        print "EVERYONE WAS ALLOCATED BOSS"
-
-
-'''
-#allocated to office.
-for room in occupied_offices:
-    print "For the {} Office those allocated are: " .format(room.name)
-    for i, value in enumerate(room.roommembers):
-        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
-    print
-
-#unallocated to office.
-for i, value in enumerate(officeset):
-    print i+1, value[0], value[2], value[1]
-
-   ''' 
 
