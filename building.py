@@ -4,13 +4,14 @@ from parser import Parser
 from rooms import Office, LivingSpace
 import random
 
-people = Parser.read_file(filename = 'input.txt')
+people = Parser.read_file()
 occupied_offices =[]
 occupied_hostels = []
 room_directory = {
             'offices': [],
             'livingspaceroom': [],
             }
+
 
 class Building(object):
 
@@ -147,10 +148,31 @@ class Building(object):
                     print ('No Allocation to this room.')
                 print("" * 1)
 
+
+
     @staticmethod
     def Unallocated_member_list():
 
-        pass
+        print ('List of Unallocated fellows to Rooms')
+
+        if len(Building.allocate_to_livingspace()):
+            for i, value in enumerate(Building.allocate_to_livingspace()):
+                print i+1, value[0], value[2], value[1]
+            print("" * 1)
+        else:
+            if len(Building.allocate_to_livingspace()) == 0:
+                print "EVERYONE WAS ALLOCATED BOSS"
+            print ("" * 1)
+
+        print ('List of Unallocated office Members.')
+        if len(Building.allocate_to_office()):
+            for i, value in enumerate(Building.allocate_to_office()):
+                print i+1, value[0], value[2], value[1]
+        else:
+            if len(Building.allocate_to_office()) == 0:
+                print "EVERYONE WAS ALLOCATED BOSS"
+        print("" * 1)
+
 
     @staticmethod
     def maleroom_members(rooms):
@@ -193,8 +215,6 @@ class Building(object):
                         print "No one present in this room."
                 print("" * 1)
 
-hostel_data_set = Building.allocate_to_livingspace()
-office_data_set = Building.allocate_to_office()
 
 
 
