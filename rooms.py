@@ -10,7 +10,9 @@ class Office(object):
         self.roommembers = []
 
     def addmember(self, member):
+        
         '''Method appends member data to class.'''
+
         self.roommembers.append(member)
 
 
@@ -18,6 +20,7 @@ class Office(object):
 class LivingSpace(Office):
 
     ''' Class takes a maximum of 4 persons per room. '''
+
     type = None
     def __init__(self, type, name, maxpersons=4):
         super(LivingSpace, self).__init__(type, name)
@@ -28,10 +31,16 @@ class LivingSpace(Office):
         self.femalemember = []
 
     def addmalemember(self, member):
+
+        '''Method checks for room type before adding member'''
+
         if self.type == 'm':
             self.malemember.append(member)
 
     def addfemalemember(self,member):
+
+        '''Method checks for room type before adding member'''
+
         if self.type == 'f':
             self.femalemember.append(member)
 

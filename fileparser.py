@@ -7,15 +7,14 @@ from persons import Fellow, Staff, Person
 
 class Parser(object):
 
-    """Class definition used to get data from inputfile. 
+    """Class definition gets data from inputfile. 
     Uses input.txt as default if none specified.
-    Data read from file is randomly shuffled here for random allocation.
     """
 
     @staticmethod
-    def read_file(filename = 'input.txt'):
+    def read_file(filename):
 
-        '''Method returns the text file data and saves in list. '''             
+        '''Method returns the text file data and saves in Classes Instance. '''             
         people = {
             'staff': [],
             'fellows': [],

@@ -1,12 +1,15 @@
-'''This script uses data from the rooms.py file and readfile.py to allocate.'''
+'''This script uses data from the persons.py file and rooms.py to allocate.'''
 
-from parser import Parser
+from fileparser import Parser
 from rooms import Office, LivingSpace
 import random
 
-people = Parser.read_file()
+
+people = Parser.read_file('input.txt')
 occupied_offices =[]
 occupied_hostels = []
+officedatasetA = []
+fellowdatasetB = []
 room_directory = {
             'offices': [],
             'livingspaceroom': [],
@@ -14,6 +17,8 @@ room_directory = {
 
 
 class Building(object):
+
+    '''Class mimics an actual building and contains methods to view result. '''
 
     @staticmethod
     def populateroom():
@@ -38,6 +43,8 @@ class Building(object):
 
     @staticmethod
     def space_data(space):
+
+        '''Method used to get data from class instances from fileparser.py '''
         
         office_data = []
         living_data = []
@@ -61,9 +68,10 @@ class Building(object):
     @staticmethod
     def get_room_list(room):
 
+        '''Method used get by allocate method to get room list specied.'''
+
         officedata = []
         livingspacedata = []
-        #femaledata = []
 
         for space in room_directory:
             if space == room:
@@ -80,21 +88,31 @@ class Building(object):
     @staticmethod
     def allocate_to_office():
 
+        '''Method used to allocate members to offices. ''' 
+
         officedataset = Building.space_data('everyone')
         random.shuffle(officedataset)
         for office_name in Building.get_room_list('offices'):            
             office = Office(office_name)
             while len(office.roommembers) < office.maxpersons:
-                position = officedataset.pop()
-                office.addmember(position)
+                if len(officedataset):
+                    position = officedataset.pop()
+                    office.addmember(position)
+                else:
+                    break
             occupied_offices.append(office)
             if len(Building.space_data('everyone')) == 0:
                 break
 
-        return officedataset
+        for data in officedataset:
+            officedatasetA.append(data)
+
 
     @staticmethod
     def allocate_to_livingspace():
+
+        ''' Method used to allocate fellows to rooms.'''
+
         fellowdataset = Building.space_data('fellows')
         random.shuffle(fellowdataset)
         for hostelname in Building.get_room_list('livingspaceroom'):
@@ -114,10 +132,14 @@ class Building(object):
                 break
 
 
-        return fellowdataset
+        for data in fellowdataset:
+            fellowdatasetB.append(data)
 
     @staticmethod
     def allocated_members_list():
+
+        '''Method used to show alloation list. '''
+
         for room in occupied_offices:
             print "For the {} Office those allocated are: " .format(room.name)
             if room.roommembers:
@@ -151,46 +173,55 @@ class Building(object):
 
 
     @staticmethod
-    def Unallocated_member_list():
+    def Unallocated_members_list():
+
+        '''Method used to show unallocated list '''
 
         print ('List of Unallocated fellows to Rooms')
 
-        if len(Building.allocate_to_livingspace()):
-            for i, value in enumerate(Building.allocate_to_livingspace()):
+        if len(fellowdatasetB):
+            for i, value in enumerate(fellowdatasetB):
                 print i+1, value[0], value[2], value[1]
             print("" * 1)
         else:
-            if len(Building.allocate_to_livingspace()) == 0:
+            if len(fellowdatasetB) == 0:
                 print "EVERYONE WAS ALLOCATED BOSS"
             print ("" * 1)
 
         print ('List of Unallocated office Members.')
-        if len(Building.allocate_to_office()):
-            for i, value in enumerate(Building.allocate_to_office()):
+        if len(officedatasetA):
+            for i, value in enumerate(officedatasetA):
                 print i+1, value[0], value[2], value[1]
         else:
-            if len(Building.allocate_to_office()) == 0:
+            if len(officedatasetA) == 0:
                 print "EVERYONE WAS ALLOCATED BOSS"
         print("" * 1)
 
 
     @staticmethod
     def maleroom_members(rooms):
+
+        '''Method used to get members assigned to specific room  
+        Usage: Building.maleroom_members('opal').
+        '''
+
+
         for room in occupied_hostels:
-            if room.type == 'm':
-                if room.name == rooms :
-                    print "For the {} maleroom those allocated are: " .format(room.name)
-                    for i, value in enumerate(room.malemember):
-                        if room.malemember:
-                            print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
-                        else:
-                            print "No one present in this room."
-                    print("" * 1)
+            if room.type == 'm' and room.name == rooms :
+                print "For the {} maleroom those allocated are: " .format(room.name)
+                for i, value in enumerate(room.malemember):
+                        print "{}. {} a {}. Gender:{}  " .format(i+1, value[0], value[2], value[1])
+                print("" * 1)
 
 
 
     @staticmethod
     def femaleroom_members(rooms):
+
+        '''Method used to get members assigned to specific room  
+            Usage: Building.femaleroom_members('ruby').
+        '''
+
         for room in occupied_hostels:
             if room.type == 'f':
                 if room.name == rooms :
@@ -205,6 +236,11 @@ class Building(object):
 
     @staticmethod
     def officeroom_members(rooms):
+
+        '''Method used to get members assigned to specific room  
+            Usage: Building.officeroom_members('Mint').
+        '''
+
         for offices in occupied_offices:
             if offices.name == rooms:
                 print "For the {} office those allocated are: " .format(offices.name)
@@ -214,6 +250,7 @@ class Building(object):
                     else:
                         print "No one present in this room."
                 print("" * 1)
+
 
 
 
