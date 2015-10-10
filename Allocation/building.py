@@ -44,7 +44,7 @@ class Building(object):
     @staticmethod
     def space_data(space):
 
-        '''Method used to get data from class instances from fileparser.py '''
+        '''Method used to get data from class instances of persons.py '''
         
         office_data = []
         living_data = []
@@ -68,7 +68,7 @@ class Building(object):
     @staticmethod
     def get_room_list(room):
 
-        '''Method used get by allocate method to get room list specied.'''
+        '''Method used by allocate method to get room list specified.'''
 
         officedata = []
         livingspacedata = []
