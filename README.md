@@ -1,6 +1,6 @@
 ####[![Coverage Status](https://coveralls.io/repos/andela-sjames/RandomSpaceAllocation/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-sjames/RandomSpaceAllocation?branch=master)
 
-# RandomSpaceAllocation
+#amity-room-allocation
 
 #####Just as the name implies this short Algorithm was created to randomly allocate company members to randomly generated rooms.
 
