@@ -16,7 +16,6 @@ class Parser(object):
 
         '''Method returns the text file data and saves in Classes Instance. '''             
         people = {
-            'staff': [],
             'fellows': [],
             'everyone': [],
         }

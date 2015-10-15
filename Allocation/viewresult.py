@@ -1,16 +1,17 @@
 '''Script use to view result of allocation.'''
-from building import Building, people
+from building import Building
 from fileparser import Parser
 
-Building.populateroom()
-Building.allocate_to_office()
-Building.allocate_to_livingspace()
-Building.allocated_members_list()
-Building.unallocated_members_list()
+amity = Building('input.txt');
+amity.populate_rooms()
+amity.allocate_to_office()
+amity.allocate_to_livingspace()
+amity.allocated_members_list()
+amity.unallocated_members_list()
 
-Building.maleroom_members('opal')
-Building.femaleroom_members('ruby')
-Building.officeroom_members('Mint')
+amity.maleroom_members('opal')
+amity.femaleroom_members('ruby')
+amity.officeroom_members('Mint')
 
 #input .txt file from building.py
 #Usage: people = Parser.read_file('your .txt file here.')
