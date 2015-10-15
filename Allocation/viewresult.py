@@ -12,6 +12,3 @@ amity.unallocated_members_list()
 amity.maleroom_members('opal')
 amity.femaleroom_members('ruby')
 amity.officeroom_members('Mint')
-
-#input .txt file from building.py
-#Usage: people = Parser.read_file('your .txt file here.')
