@@ -4,16 +4,20 @@ from fileparser import Parser
 from rooms import Office, LivingSpace
 import random
 
-
 people = Parser.read_file('input.txt')
-occupied_offices =[]
-occupied_hostels = []
-officedatasetA = []
-fellowdatasetB = []
-room_directory = {
-            'offices': [],
-            'livingspaceroom': [],
-            }
+
+class Directory(object):
+
+    ''' Class defined to store office and livingspace data.'''
+
+    occupied_offices =[]
+    occupied_hostels = []
+    office_memberA = []
+    the_fellowsB = []
+    room_directory = {
+        'offices': [],
+        'livingspaceroom': [],
+        }
 
 
 class Building(object):
@@ -25,21 +29,15 @@ class Building(object):
 
         offices = ['Carat', 'Anvil', 'Crucible', 'Kiln', 'Forge', 'Foundry', 'Furnace', 'Boiler', 'Mint', 'Vulcan',]
 
-        malerooms = [('m','topaz'), ('m','silver'), ('m','gold'), ('m','onyx'), ('m','opal'),]
-
-        femalerooms = [('f','ruby'), ('f','platinum'), ('f','jade'), ('f','pearl'), ('f','diamond'),]
-
+        livingspacerooms = [('m','topaz'), ('m','silver'), ('m','gold'), ('m','onyx'), ('m','opal'),('f','ruby'), ('f','platinum'), ('f','jade'), ('f','pearl'), ('f','diamond'),]
 
         for room_name in offices:
-            room_directory['offices'].append(room_name)
+            Directory.room_directory['offices'].append(room_name)
 
-        for room_name in malerooms:
-            room_directory['livingspaceroom'].append(room_name)
+        for room_name in livingspacerooms:
+            Directory.room_directory['livingspaceroom'].append(room_name)
 
-        for room_name in femalerooms:
-            room_directory['livingspaceroom'].append(room_name)      
-
-        return room_directory
+        return Directory.room_directory
 
     @staticmethod
     def space_data(space):
@@ -73,14 +71,14 @@ class Building(object):
         officedata = []
         livingspacedata = []
 
-        for space in room_directory:
+        for space in Directory.room_directory:
             if space == room:
-                for office_name in room_directory[space]:
+                for office_name in Directory.room_directory[space]:
                     officedata.append(office_name)
                 return officedata
 
             if space == room:
-                for roomname in room_directory[space]:
+                for roomname in Directory.room_directory[space]:
                     livingspacedata.append(roomname)
                 return livingspacedata
 
@@ -90,22 +88,22 @@ class Building(object):
 
         '''Method used to allocate members to offices. ''' 
 
-        officedataset = Building.space_data('everyone')
-        random.shuffle(officedataset)
+        office_member = Building.space_data('everyone')
+        random.shuffle(office_member)
         for office_name in Building.get_room_list('offices'):            
             office = Office(office_name)
             while len(office.roommembers) < office.maxpersons:
-                if len(officedataset):
-                    position = officedataset.pop()
+                if len(office_member):
+                    position = office_member.pop()
                     office.addmember(position)
                 else:
                     break
-            occupied_offices.append(office)
+            Directory.occupied_offices.append(office)
             if len(Building.space_data('everyone')) == 0:
                 break
 
-        for data in officedataset:
-            officedatasetA.append(data)
+        for data in office_member:
+            Directory.office_memberA.append(data)
 
 
     @staticmethod
@@ -113,13 +111,13 @@ class Building(object):
 
         ''' Method used to allocate fellows to rooms.'''
 
-        fellowdataset = Building.space_data('fellows')
-        random.shuffle(fellowdataset)
+        the_fellows = Building.space_data('fellows')
+        random.shuffle(the_fellows)
         for hostelname in Building.get_room_list('livingspaceroom'):
             hostel = LivingSpace(hostelname[0],hostelname[1])
             while len(hostel.femalemember) < hostel.maxpersons and len(hostel.malemember) < hostel.maxpersons:
-                if len(fellowdataset):
-                    position = fellowdataset.pop()
+                if len(the_fellows):
+                    position = the_fellows.pop()
                     if position[1] == 'F' and position[3]:
                         hostel.addfemalemember(position)
 
@@ -127,20 +125,20 @@ class Building(object):
                         hostel.addmalemember(position)
                 else:
                     break
-            occupied_hostels.append(hostel)
+            Directory.occupied_hostels.append(hostel)
             if len(Building.space_data('fellows')) == 0:
                 break
 
 
-        for data in fellowdataset:
-            fellowdatasetB.append(data)
+        for data in the_fellows:
+            Directory.the_fellowsB.append(data)
 
     @staticmethod
     def allocated_members_list():
 
         '''Method used to show alloation list. '''
 
-        for room in occupied_offices:
+        for room in Directory.occupied_offices:
             print "For the {} Office those allocated are: " .format(room.name)
             if room.roommembers:
                 for i, value in enumerate(room.roommembers):
@@ -150,7 +148,7 @@ class Building(object):
             print("" * 1)
 
 
-        for room in occupied_hostels:
+        for room in Directory.occupied_hostels:
             if room.type == 'm':
                 print 'For {} Male room those allocated are:'.format(room.name)
                 if room.malemember:
@@ -160,7 +158,7 @@ class Building(object):
                     print ('No Allocation to this room.')
                 print("" * 1)
 
-        for room in occupied_hostels:
+        for room in Directory.occupied_hostels:
             if room.type == 'f':
                 print 'For {} Female room those allocated are:'.format(room.name)
                 if room.femalemember:
@@ -173,27 +171,27 @@ class Building(object):
 
 
     @staticmethod
-    def Unallocated_members_list():
+    def unallocated_members_list():
 
         '''Method used to show unallocated list '''
 
         print ('List of Unallocated fellows to Rooms')
 
-        if len(fellowdatasetB):
-            for i, value in enumerate(fellowdatasetB):
+        if len(Directory.the_fellowsB):
+            for i, value in enumerate(Directory.the_fellowsB):
                 print i+1, value[0], value[2], value[1]
             print("" * 1)
         else:
-            if len(fellowdatasetB) == 0:
+            if len(Directory.the_fellowsB) == 0:
                 print "EVERYONE WAS ALLOCATED BOSS"
             print ("" * 1)
 
         print ('List of Unallocated office Members.')
-        if len(officedatasetA):
-            for i, value in enumerate(officedatasetA):
+        if len(Directory.office_memberA):
+            for i, value in enumerate(Directory.office_memberA):
                 print i+1, value[0], value[2], value[1]
         else:
-            if len(officedatasetA) == 0:
+            if len(Directory.office_memberA) == 0:
                 print "EVERYONE WAS ALLOCATED BOSS"
         print("" * 1)
 
@@ -206,7 +204,7 @@ class Building(object):
         '''
 
 
-        for room in occupied_hostels:
+        for room in Directory.occupied_hostels:
             if room.type == 'm' and room.name == rooms :
                 print "For the {} maleroom those allocated are: " .format(room.name)
                 for i, value in enumerate(room.malemember):
@@ -222,7 +220,7 @@ class Building(object):
             Usage: Building.femaleroom_members('ruby').
         '''
 
-        for room in occupied_hostels:
+        for room in Directory.occupied_hostels:
             if room.type == 'f':
                 if room.name == rooms :
                     print "For the {} femaleroom those allocated are: " .format(room.name)
@@ -241,7 +239,7 @@ class Building(object):
             Usage: Building.officeroom_members('Mint').
         '''
 
-        for offices in occupied_offices:
+        for offices in Directory.occupied_offices:
             if offices.name == rooms:
                 print "For the {} office those allocated are: " .format(offices.name)
                 for i, value in enumerate(offices.roommembers):
