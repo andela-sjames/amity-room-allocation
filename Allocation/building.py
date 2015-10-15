@@ -43,25 +43,13 @@ class Building(object):
     def space_data(space):
 
         '''Method used to get data from class instances of persons.py '''
-        
-        office_data = []
-        living_data = []
-        staff_data = []
+
+        building_data = []
         for data in people:
             if data == space:
                 for individual in people[data]:
-                    office_data.append([individual.name, individual.gender, individual.position,individual.wants_living])
-                return office_data
-
-            if data == space:
-                for individual in people[data]:
-                    living_data.append([individual.name, individual.gender, individual.position, individual.wants_living])
-                return living_data
-
-            if data == space:
-                for individual in people[data]:
-                    staff_data.append([individual.name, individual.gender, individual.position, individual.wants_living])
-                return staff_data
+                    building_data.append([individual.name, individual.gender, individual.position,individual.wants_living])
+                return building_data
         
     @staticmethod
     def get_room_list(room):
