@@ -58,10 +58,10 @@ class Building(object):
 
         random.shuffle(self.people['fellows'])
         for hostelname in self.room_directory['livingspaces']:
-            hostel = LivingSpace(hostelname[0],hostelname[1]) #male
+            hostel = LivingSpace(hostelname[0],hostelname[1]) 
             
             if hostelname[0] == 'm':
-                while len(hostel.malemember) < hostel.maxpersons: #female
+                while len(hostel.malemember) < hostel.maxpersons: 
                     if len(self.people['fellows']):
                         person = self.people['fellows'].pop()
                         if person.gender == 'M' and person.wants_living:
