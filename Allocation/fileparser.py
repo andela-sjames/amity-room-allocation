@@ -35,9 +35,6 @@ class Parser(object):
                     wants_living = True if line[3].strip()  == 'Y' else False
                     person = Fellow(line[0], line[1], line[2], wants_living)
                     people['fellows'].append(person)
-                else:
-                    person = Staff(line[0], line[1], line[2])
-                    people['staff'].append(person)
 
         return people
 
