@@ -12,7 +12,7 @@ class Parser(object):
     """
 
     @staticmethod
-    def read_file(filename):
+    def read_file(filename = 'input.txt'):
 
         '''Method returns the text file data and saves in Classes Instance. '''             
         people = {

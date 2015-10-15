@@ -46,7 +46,7 @@ class TestBuildingClass(unittest.TestCase):
 
         self.assertIsNone(self.build.allocated_members_list(), msg = 'method should print data and not return a value.')
 
-        self.assertIsNone(self.build.Unallocated_members_list(), msg = 'method should print data and not return a value.')
+        self.assertIsNone(self.build.unallocated_members_list(), msg = 'method should print data and not return a value.')
 
         self.assertIsNone(self.build.maleroom_members('opal'),msg ='should print data and not return a value')
 

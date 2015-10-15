@@ -6,7 +6,7 @@ Building.populateroom()
 Building.allocate_to_office()
 Building.allocate_to_livingspace()
 Building.allocated_members_list()
-Building.Unallocated_members_list()
+Building.unallocated_members_list()
 
 Building.maleroom_members('opal')
 Building.femaleroom_members('ruby')
