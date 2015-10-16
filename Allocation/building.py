@@ -82,7 +82,6 @@ class Building(object):
                 if self.hostel_directory['male'] == 0:
                     break
 
-        #for hostelname in self.room_directory['livingspaces']:
             if hostelname[0] == 'f':
                     hostel = LivingSpace(hostelname[0],hostelname[1])
                     while len(hostel.femalemember) < hostel.maxpersons:
