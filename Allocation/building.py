@@ -120,7 +120,6 @@ class Building(object):
                     print ('No Allocation to this room.')
                 print("" * 1)
 
-        for room in self.occupied_hostels:
             if room.type == 'f':
                 print 'For {} Female room those allocated are:'.format(room.name)
                 if room.femalemember:
