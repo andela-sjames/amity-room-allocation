@@ -24,23 +24,21 @@ class TestBuildingClass(unittest.TestCase):
     '''Class used to test builing is populated and allocates rooms.'''
 
     def setUp(self):
-        self.build = Building()
+        self.build = Building('input.txt')
+        self.build.allocate_to_office()
+        
 
     def test_building_is_populated_with_data(self):
 
-        self.assertIsNotNone(self.build.populateroom(), msg ='room_directory should be poplated with data from list.')
+        self.assertIsNone(self.build.populate_rooms(), msg ='room_directory should be poplated with data from list.')
 
-        self.assertIsNotNone(self.build.space_data('everyone'), msg ='data from returned parser class should be callable')
-
-        self.assertIsNotNone(self.build.get_room_list('offices'), msg ='list of offices available should be returned')
-
-        self.assertIsNotNone(self.build.get_room_list('livingspaceroom'), msg = 'list of livingspace room should be returned')
-
+        self.assertIsNone(self.build.get_fellows(), msg ='data from returned parser class should be callable')
+       
     def test_data_allocation_function_returns_None(self):
 
-        self.assertIsNone(self.build.allocate_to_livingspace(), msg='method should not return any value')
-
         self.assertIsNone(self.build.allocate_to_office(), msg='method should return any value')
+
+        self.assertIsNone(self.build.allocate_to_livingspace(), msg='method should not return any value')
 
     def test_data_is_printed(self):
 

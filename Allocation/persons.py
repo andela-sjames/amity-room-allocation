@@ -19,9 +19,3 @@ class Fellow(Person):
     Class to model Fellow
     '''
     pass
-
-class Staff(Person):
-    '''
-    Class to model Staff
-    '''
-    pass

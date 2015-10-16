@@ -3,7 +3,7 @@
 
 import re
 import random
-from persons import Fellow, Staff, Person
+from persons import Fellow, Person
 
 class Parser(object):
 
@@ -12,11 +12,10 @@ class Parser(object):
     """
 
     @staticmethod
-    def read_file(filename = 'input.txt'):
+    def read_file(filename):
 
         '''Method returns the text file data and saves in Classes Instance. '''             
         people = {
-            'staff': [],
             'fellows': [],
             'everyone': [],
         }
@@ -35,9 +34,6 @@ class Parser(object):
                     wants_living = True if line[3].strip()  == 'Y' else False
                     person = Fellow(line[0], line[1], line[2], wants_living)
                     people['fellows'].append(person)
-                else:
-                    person = Staff(line[0], line[1], line[2])
-                    people['staff'].append(person)
 
         return people
 
