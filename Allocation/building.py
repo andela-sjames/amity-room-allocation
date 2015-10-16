@@ -74,7 +74,7 @@ class Building(object):
                     if len(self.hostel_directory['male']):
                         person = self.hostel_directory['male'].pop()
                         if person.gender == 'M' and person.wants_living:
-                            hostel.addmalemember(person)
+                            hostel.addfellow(person)
                     else:
                         break
                 self.occupied_hostels.append(hostel)
@@ -88,7 +88,7 @@ class Building(object):
                         if len(self.hostel_directory['female']): 
                             person = self.hostel_directory['female'].pop()
                             if person.gender == 'F' and person.wants_living:
-                                hostel.addfemalemember(person)
+                                hostel.addfellow(person)
                         else:
                             break
                     self.occupied_hostels.append(hostel)
@@ -111,7 +111,7 @@ class Building(object):
 
 
         for room in self.occupied_hostels:
-            if room.type == 'm':
+            if room.roomtype == 'm':
                 print 'For {} Male room those allocated are:'.format(room.name)
                 if room.malemember:
                     for i, value in enumerate(room.malemember):
@@ -120,7 +120,7 @@ class Building(object):
                     print ('No Allocation to this room.')
                 print("" * 1)
 
-            if room.type == 'f':
+            if room.roomtype == 'f':
                 print 'For {} Female room those allocated are:'.format(room.name)
                 if room.femalemember:
                     for i, value in enumerate(room.femalemember):
@@ -175,7 +175,7 @@ class Building(object):
         '''
 
         for room in self.occupied_hostels:
-            if room.type == 'm' and room.name == rooms :
+            if room.roomtype == 'm' and room.name == rooms :
                 print "For the {} maleroom those allocated are: " .format(room.name)
                 for i, value in enumerate(room.malemember):
                         print "{}. {} a {}. Gender:{}  " .format(i+1, value.name, value.position, value.gender)
@@ -189,7 +189,7 @@ class Building(object):
         '''
 
         for room in self.occupied_hostels:
-            if room.type == 'f':
+            if room.roomtype == 'f':
                 if room.name == rooms :
                     print "For the {} femaleroom those allocated are: " .format(room.name)
                     for i, value in enumerate(room.femalemember):
