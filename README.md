@@ -43,15 +43,19 @@ The `Building.py` makes use of the data returned from the `fileparser.py` script
 The `viewresult.py` outputs your result in details.
 Methods used in the viewresult.py are:
 ```
-Building.populateroom()
-Building.allocate_to_office()
-Building.allocate_to_livingspace()
-Building.allocated_members_list()
-Building.Unallocated_members_list()
+amity = Building('input.txt');
+amity.populate_rooms()
+amity.get_fellows()
 
-Building.maleroom_members('opal')
-Building.femaleroom_members('ruby')
-Building.officeroom_members('Mint')
+amity.allocate_to_office()
+amity.allocate_to_livingspace()
+
+amity.allocated_members_list()
+amity.unallocated_members_list()
+
+amity.maleroom_members('opal')
+amity.femaleroom_members('ruby')
+amity.officeroom_members('Mint')
 ```
 
 These methods are gotten from the `Building.py` script.
@@ -67,7 +71,7 @@ Run command from command line(CLI) `python viewresult.py` and your result will b
 To COPY result to text file run `python viewresult.py > result.txt `. 
 
 To dynamically Input text file and not make use of default name of `input.txt` as your input file
-modify the code `people = Parser.read_file('your .txt file here.')` in `building.py` and you are good to go.
+modify the code `amity = Building('your .txt file goes here')` in `building.py` and you are good to go.
 
 Note: Your input file needs to be in same directory with the script.
 
