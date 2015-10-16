@@ -3,7 +3,7 @@
 
 import re
 import random
-from persons import Fellow, Staff, Person
+from persons import Fellow, Person
 
 class Parser(object):
 
@@ -12,7 +12,7 @@ class Parser(object):
     """
 
     @staticmethod
-    def read_file(filename = 'input.txt'):
+    def read_file(filename):
 
         '''Method returns the text file data and saves in Classes Instance. '''             
         people = {

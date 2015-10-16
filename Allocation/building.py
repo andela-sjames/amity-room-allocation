@@ -10,8 +10,10 @@ class Building(object):
     '''Class mimics an actual building and contains methods to view result. '''
     occupied_offices =[]
     occupied_hostels = []
-    office_memberA = []
-    the_fellowsB = []
+    hostel_directory = {
+        'male': [],
+        'female':[],
+        }
     room_directory = {
         'offices': [],
         'livingspaces': [],
@@ -33,6 +35,14 @@ class Building(object):
 
         for room_name in livingspacerooms:
             self.room_directory['livingspaces'].append(room_name)
+
+    def get_fellows(self):
+        for fellow in self.people['fellows']:
+            if fellow.gender == 'M':
+                self.hostel_directory['male'].append(fellow)
+            else:
+                self.hostel_directory['female'].append(fellow)
+
 
 
     def allocate_to_office(self):
@@ -58,27 +68,34 @@ class Building(object):
 
         random.shuffle(self.people['fellows'])
         for hostelname in self.room_directory['livingspaces']:
-            hostel = LivingSpace(hostelname[0],hostelname[1]) 
-            
             if hostelname[0] == 'm':
-                while len(hostel.malemember) < hostel.maxpersons: 
-                    if len(self.people['fellows']):
-                        person = self.people['fellows'].pop()
+                hostel = LivingSpace(hostelname[0],hostelname[1])
+                while len(hostel.malemember) < hostel.maxpersons:
+                    if len(self.hostel_directory['male']):
+                        person = self.hostel_directory['male'].pop()
                         if person.gender == 'M' and person.wants_living:
                             hostel.addmalemember(person)
+                    else:
+                        break
+                self.occupied_hostels.append(hostel)
 
-            if hostelname[0] == 'f':
-                while len(hostel.femalemember) < hostel.maxpersons:
-                    if len(self.people['fellows']):
-                        person = self.people['fellows'].pop()
-                        if person.gender == 'F' and person.wants_living:
-                            hostel.addfemalemember(person)
-
-                else:
+                if self.hostel_directory['male'] == 0:
                     break
-            self.occupied_hostels.append(hostel)
-            if len(self.people['fellows']) == 0:
-                break
+
+        #for hostelname in self.room_directory['livingspaces']:
+            if hostelname[0] == 'f':
+                    hostel = LivingSpace(hostelname[0],hostelname[1])
+                    while len(hostel.femalemember) < hostel.maxpersons:
+                        if len(self.hostel_directory['female']): 
+                            person = self.hostel_directory['female'].pop()
+                            if person.gender == 'F' and person.wants_living:
+                                hostel.addfemalemember(person)
+                        else:
+                            break
+                    self.occupied_hostels.append(hostel)
+
+                    if self.hostel_directory['female'] == 0:
+                        break
 
     def allocated_members_list(self):
 
@@ -120,16 +137,28 @@ class Building(object):
 
         '''Method used to show unallocated list '''
 
-        print ('List of Unallocated fellows to Rooms')
+        print ('List of Unallocated female fellows to Rooms')
 
-        if len(self.people['fellows']):
-            for i, value in enumerate(self.people['fellows']):
+        if len(self.hostel_directory['female']):
+            for i, value in enumerate(self.hostel_directory['female']):
                 print i+1, value.name, value.position, value.gender
             print("" * 1)
         else:
-            if len(self.people['fellows']) == 0:
+            if len(self.hostel_directory['female']) == 0:
                 print "EVERYONE WAS ALLOCATED BOSS"
             print ("" * 1)
+
+        print ('List of Unallocated male fellows to Rooms')
+
+        if len(self.hostel_directory['male']):
+            for i, value in enumerate(self.hostel_directory['male']):
+                print i+1, value.name, value.position, value.gender
+            print("" * 1)
+        else:
+            if len(self.hostel_directory['male']) == 0:
+                print "EVERYONE WAS ALLOCATED BOSS"
+            print ("" * 1)
+
 
         print ('List of Unallocated office Members.')
         if len(self.people['everyone']):

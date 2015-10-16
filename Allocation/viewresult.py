@@ -4,8 +4,11 @@ from fileparser import Parser
 
 amity = Building('input.txt');
 amity.populate_rooms()
+amity.get_fellows()
+
 amity.allocate_to_office()
 amity.allocate_to_livingspace()
+
 amity.allocated_members_list()
 amity.unallocated_members_list()
 
