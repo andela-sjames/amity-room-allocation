@@ -21,28 +21,23 @@ class LivingSpace(Office):
 
     ''' Class takes a maximum of 4 persons per room. '''
 
-    type = None
-    def __init__(self, type, name, maxpersons=4):
-        super(LivingSpace, self).__init__(type, name)
-        self.type = type
+    roomtype = None
+    def __init__(self, roomtype, name, maxpersons=4):
+        super(LivingSpace, self).__init__(roomtype, name)
+        self.roomtype = roomtype
         self.name = name
         self.maxpersons = maxpersons
         self.malemember = []
         self.femalemember = []
 
-    def addmalemember(self, member):
+    def addfellow(self, member):
 
         '''Method checks for room type before adding member'''
 
-        if self.type == 'm':
+        if self.roomtype == 'm':
             self.malemember.append(member)
-
-    def addfemalemember(self,member):
-
-        '''Method checks for room type before adding member'''
-
-        if self.type == 'f':
-            self.femalemember.append(member)
+        else:
+            self.femalemember.append(member)        
 
 
 
