@@ -79,22 +79,19 @@ class Building(object):
                         break
                 self.occupied_hostels.append(hostel)
 
-                if len(self.hostel_directory['male']) == 0:
-                    break
-
             if hostelname[0] == 'f':
-                    hostel = LivingSpace(hostelname[0],hostelname[1])
-                    while len(hostel.femalemember) < hostel.maxpersons:
-                        if len(self.hostel_directory['female']): 
-                            person = self.hostel_directory['female'].pop()
-                            if person.gender == 'F' and person.wants_living:
-                                hostel.addfellow(person)
-                        else:
-                            break
-                    self.occupied_hostels.append(hostel)
-
-                    if len(self.hostel_directory['female']) == 0:
+                hostel = LivingSpace(hostelname[0],hostelname[1])
+                while len(hostel.femalemember) < hostel.maxpersons:
+                    if len(self.hostel_directory['female']): 
+                        person = self.hostel_directory['female'].pop()
+                        if person.gender == 'F' and person.wants_living:
+                            hostel.addfellow(person)
+                    else:
                         break
+                self.occupied_hostels.append(hostel)
+
+            if len(self.hostel_directory['female']) == 0 and len(self.hostel_directory['male']) == 0:
+                break
 
     def allocated_members_list(self):
 
