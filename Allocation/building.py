@@ -79,7 +79,7 @@ class Building(object):
                         break
                 self.occupied_hostels.append(hostel)
 
-                if self.hostel_directory['male'] == 0:
+                if len(self.hostel_directory['male']) == 0:
                     break
 
             if hostelname[0] == 'f':
@@ -93,7 +93,7 @@ class Building(object):
                             break
                     self.occupied_hostels.append(hostel)
 
-                    if self.hostel_directory['female'] == 0:
+                    if len(self.hostel_directory['female']) == 0:
                         break
 
     def allocated_members_list(self):
